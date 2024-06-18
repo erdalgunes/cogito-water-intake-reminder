@@ -9,25 +9,23 @@ package com.cogito.water.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.wear.compose.material.MaterialTheme
-import androidx.wear.compose.material.Text
-import androidx.wear.compose.material.TimeText
-import com.cogito.water.R
-import com.cogito.water.presentation.theme.WaterIntakeReminderTheme
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.wear.tooling.preview.devices.WearDevices
+import appModule
+import com.cogito.water.screen.state.SummaryScreen
+import com.slack.circuit.foundation.Circuit
+import com.slack.circuit.foundation.CircuitCompositionLocals
+import com.slack.circuit.foundation.CircuitContent
+import org.koin.androidx.compose.KoinAndroidContext
+import org.koin.compose.KoinApplication
+import org.koin.compose.koinInject
+import org.koin.core.annotation.KoinExperimentalAPI
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
 
@@ -36,38 +34,27 @@ class MainActivity : ComponentActivity() {
         setTheme(android.R.style.Theme_DeviceDefault)
 
         setContent {
-            WearApp("Android")
+            WearApp()
         }
     }
 }
 
+@OptIn(KoinExperimentalAPI::class)
 @Composable
-fun WearApp(greetingName: String) {
-    WaterIntakeReminderTheme {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colors.background),
-            contentAlignment = Alignment.Center
-        ) {
-            TimeText()
-            Greeting(greetingName = greetingName)
+fun WearApp(circuit: Circuit = koinInject()) {
+    KoinAndroidContext {
+        CircuitCompositionLocals(circuit) {
+            CircuitContent(SummaryScreen)
         }
     }
 }
 
-@Composable
-fun Greeting(greetingName: String) {
-    Text(
-        modifier = Modifier.fillMaxWidth(),
-        textAlign = TextAlign.Center,
-        color = MaterialTheme.colors.primary,
-        text = stringResource(R.string.hello_world, greetingName)
-    )
-}
-
-@Preview(device = Devices.WEAR_OS_SMALL_ROUND, showSystemUi = true)
+@Preview(device = WearDevices.SMALL_ROUND, showSystemUi = true)
 @Composable
 fun DefaultPreview() {
-    WearApp("Preview Android")
+    KoinApplication(application = {
+        modules(appModule)
+    }) {
+        WearApp()
+    }
 }

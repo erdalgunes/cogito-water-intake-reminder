@@ -1,37 +1,116 @@
 [versions]
 agp = "8.6.0-alpha04"
-kotlin = "1.9.0"
-playServicesWearable = "18.0.0"
-composeBom = "2024.04.01"
-composeMaterial = "1.2.1"
-composeFoundation = "1.2.1"
+kotlin = "1.9.24"
+playServicesWearable = "18.2.0"
+composeBom = "2024.06.00"
+wearCompose = "1.3.1"
 activityCompose = "1.9.0"
-coreSplashscreen = "1.0.1"
-tiles = "1.1.0"
-tilesMaterial = "1.1.0"
+coreSplashscreen = "1.2.0-alpha01"
+wear = "1.3.0"
 horologistComposeTools = "0.4.8"
 horologistTiles = "0.4.8"
-watchfaceComplicationsDataSourceKtx = "1.1.1"
+jetbrainsKotlinJvm = "1.9.0"
+koinBom = "3.6.0-Beta4"
+koinAnnotationsBom = "1.3.1"
+androidXAppCompat = "1.7.0"
+androidXAnnotation = "1.8.0"
+androidXAnnotationExperimental = "1.4.1"
+androidXConcurrent = "1.2.0"
+androidXCore = "1.13.1"
+androidXDatastore = "1.1.1"
+androidXLifecycle = "2.8.2"
+androidXRoom = "2.6.1"
+androidXSavedState = "1.2.1"
+androidXTestCore = "1.5.0"
+androidXWearInput = "1.1.0"
+androidXWearOngoing = "1.0.0"
+androidXWearPhoneInteractions = "1.0.1"
+androidXWearRemoteInteractions = "1.0.0"
+androidXWearWatchFace = "1.2.1"
+androidXWork = "2.9.0"
+kspPlugin = "2.0.0-1.0.22"
+circuit = "0.22.0"
 
 [libraries]
-play-services-wearable = { group = "com.google.android.gms", name = "play-services-wearable", version.ref = "playServicesWearable" }
-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
-ui = { group = "androidx.compose.ui", name = "ui" }
-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "composeMaterial" }
-compose-foundation = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "composeFoundation" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "androidXAnnotation"}
+androidx-annotation-experimental = { group = "androidx.annotation", name = "annotation-experimental", version.ref = "androidXAnnotationExperimental"}
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidXAppCompat" }
+androidx-concurrent = { group = "androidx.concurrent", name = "concurrent-futures", version.ref = "androidXConcurrent"}
+androidx-concurrent-ktx = { group = "androidx.concurrent", name = "concurrent-futures-ktx", version.ref = "androidXConcurrent"}
+androidx-core = { group = "androidx.core", name = "core", version.ref = "androidXCore"}
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidXCore"}
+androidx-core-performance = { group = "androidx.core", name = "core-performance", version.ref = "androidXCore"}
+androidx-datastore-core = { group = "androidx.datastore", name = "datastore-core", version.ref = "androidXDatastore"}
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidXLifecycle"}
+androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidXLifecycle"}
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidXLifecycle"}
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidXLifecycle"}
+androidx-lifecycle-viewmodel-savedstate = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-savedstate", version.ref = "androidXLifecycle"}
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidXRoom"}
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidXRoom"}
+androidx-savedstate = { group = "androidx.savedstate", name = "savedstate", version.ref = "androidXSavedState"}
+androidx-savedstate-ktx = { group = "androidx.savedstate", name = "savedstate-ktx", version.ref = "androidXSavedState"}
+androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidXTestCore"}
+androidx-test-core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "androidXTestCore"}
+androidx-wear = { group = "androidx.wear", name = "wear", version.ref = "wear"}
+androidx-wear-tooling-preview = { group = "androidx.wear", name = "wear-tooling-preview", version = "1.0.0"}
+androidx-wear-input = { group = "androidx.wear", name = "wear-input", version.ref = "androidXWearInput"}
+androidx-wear-input-testing = { group = "androidx.wear", name = "wear-input-testing", version.ref = "androidXWearInput"}
+androidx-wear-ongoing = { group = "androidx.wear", name = "wear-ongoing", version.ref = "androidXWearOngoing"}
+androidx-wear-phone-interactions = { group = "androidx.wear", name = "wear-phone-interactions", version.ref = "androidXWearPhoneInteractions"}
+androidx-wear-remote-interactions = { group = "androidx.wear", name = "wear-remote-interactions", version.ref = "androidXWearRemoteInteractions"}
+androidx-wear-watchface = { group = "androidx.wear.watchface", name = "watchface", version.ref = "androidXWearWatchFace"}
+androidx-wear-watchface-complications-data-source = { group = "androidx.wear.watchface", name = "watchface-complications-data-source", version.ref = "androidXWearWatchFace"}
+androidx-wear-watchface-complications-data-source-ktx = { group = "androidx.wear.watchface", name = "watchface-complications-data-source-ktx", version.ref = "androidXWearWatchFace"}
+androidx-wear-watchface-complications-rendering = { group = "androidx.wear.watchface", name = "watchface-complications-rendering", version.ref = "androidXWearWatchFace"}
+androidx-wear-watchface-editor = { group = "androidx.wear.watchface", name = "watchface-editor", version.ref = "androidXWearWatchFace"}
+androidx-work-multiprocess = { group = "androidx.work", name = "work-multiprocess", version.ref = "androidXWork"}
+androidx-work-runtime = { group = "androidx.work", name = "work-runtime", version.ref = "androidXWork"}
+androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "androidXWork"}
+circuit = { group = "com.slack.circuit", name = "circuit-foundation", version.ref="circuit" }
+compose-animation = { group = "androidx.compose.animation", name = "animation" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+compose-foundation = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "wearCompose" }
+compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "wearCompose" }
+compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
+compose-viewmodel = { group = "androidx.compose.runtime", name = "runtime-viewmodel" }
+compose-wear-navigation = { group = "androidx.wear.compose", name = "compose-navigation", version.ref = "wearCompose" }
+compose-wear-ui-tooling = { group = "androidx.wear.compose", name = "compose-ui-tooling" }
 core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
-tiles = { group = "androidx.wear.tiles", name = "tiles", version.ref = "tiles" }
-tiles-material = { group = "androidx.wear.tiles", name = "tiles-material", version.ref = "tilesMaterial" }
 horologist-compose-tools = { group = "com.google.android.horologist", name = "horologist-compose-tools", version.ref = "horologistComposeTools" }
 horologist-tiles = { group = "com.google.android.horologist", name = "horologist-tiles", version.ref = "horologistTiles" }
-watchface-complications-data-source-ktx = { group = "androidx.wear.watchface", name = "watchface-complications-data-source-ktx", version.ref = "watchfaceComplicationsDataSourceKtx" }
+koin-android = { group = "io.insert-koin", name = "koin-android" }
+koin-android-compat = { group = "io.insert-koin", name = "koin-android-compat"}
+koin-android-test = { group = "io.insert-koin", name = "koin-android-test"}
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose"}
+koin-androidx-compose-navigation = { group = "io.insert-koin", name = "koin-androidx-compose-navigation"}
+koin-androidx-navigation = { group = "io.insert-koin", name = "koin-androidx-navigation"}
+koin-androidx-workmanager = { group = "io.insert-koin", name = "koin-androidx-workmanager"}
+koin-annotations = { group = "io.insert-koin", name = "koin-annotations"}
+koin-annotations-bom = { group = "io.insert-koin", name = "koin-annotations-bom", version.ref = "koinAnnotationsBom" }
+koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koinBom" }
+koin-compose = { group = "io.insert-koin", name = "koin-compose"}
+koin-core = { group = "io.insert-koin", name = "koin-core"}
+koin-core-coroutines = { group = "io.insert-koin", name = "koin-core-coroutines"}
+koin-ksp-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler"}
+koin-ktor = { group = "io.insert-koin", name = "koin-ktor"}
+koin-test = { group = "io.insert-koin", name = "koin-test"}
+play-services-wearable = { group = "com.google.android.gms", name = "play-services-wearable", version.ref = "playServicesWearable" }
+tiles = { group = "androidx.wear.tiles", name = "tiles", version.ref = "wear" }
+tiles-material = { group = "androidx.wear.tiles", name = "tiles-material", version.ref = "wear" }
+ui = { group = "androidx.compose.ui", name = "ui" }
+ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+
+
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "kspPlugin"}
 

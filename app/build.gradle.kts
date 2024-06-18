@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -39,7 +40,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
     packaging {
         resources {
@@ -49,20 +50,37 @@ android {
 }
 
 dependencies {
-
-    implementation(libs.play.services.wearable)
     implementation(platform(libs.compose.bom))
-    implementation(libs.ui)
-    implementation(libs.ui.tooling.preview)
-    implementation(libs.compose.material)
-    implementation(libs.compose.foundation)
+    implementation(platform(libs.koin.annotations.bom))
+    implementation(platform(libs.koin.bom))
+
     implementation(libs.activity.compose)
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.annotation.experimental)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.circuit)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material)
+    implementation(libs.compose.wear.ui.tooling)
     implementation(libs.core.splashscreen)
-    implementation(libs.tiles)
-    implementation(libs.tiles.material)
     implementation(libs.horologist.compose.tools)
     implementation(libs.horologist.tiles)
-    implementation(libs.watchface.complications.data.source.ktx)
+    implementation(libs.koin.android)
+    implementation(libs.koin.android.compat)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.annotations)
+    implementation(libs.koin.compose)
+    implementation(libs.koin.core)
+    implementation(libs.koin.core.coroutines)
+    implementation(libs.play.services.wearable)
+    implementation(libs.tiles)
+    implementation(libs.tiles.material)
+    implementation(libs.androidx.wear)
+    implementation(libs.androidx.wear.tooling.preview)
+    implementation(libs.ui.tooling.preview)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
