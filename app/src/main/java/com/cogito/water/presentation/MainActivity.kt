@@ -9,13 +9,15 @@ package com.cogito.water.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Devices
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.wear.tooling.preview.devices.WearDevices
 import appModule
-import com.cogito.water.screen.state.SummaryScreen
+import com.cogito.water.di.CircuitProvider
+import com.cogito.water.presentation.summary.state.SummaryScreen
 import com.slack.circuit.foundation.Circuit
 import com.slack.circuit.foundation.CircuitCompositionLocals
 import com.slack.circuit.foundation.CircuitContent
@@ -41,10 +43,10 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(KoinExperimentalAPI::class)
 @Composable
-fun WearApp(circuit: Circuit = koinInject()) {
+fun WearApp(circuitProvider: CircuitProvider = koinInject()) {
     KoinAndroidContext {
-        CircuitCompositionLocals(circuit) {
-            CircuitContent(SummaryScreen)
+        CircuitCompositionLocals(circuitProvider.circuit) {
+            CircuitContent(SummaryScreen, modifier = Modifier.fillMaxSize())
         }
     }
 }

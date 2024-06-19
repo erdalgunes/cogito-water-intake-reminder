@@ -104,6 +104,13 @@ ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+supabase-bom = { group = "io.github.jan-tennert.supabase", name = "bom", version = "2.5.0" }
+supabase-realtime= { group = "io.github.jan-tennert.supabase", name = "realtime-kt" }
+supabase-postgrest = { group = "io.github.jan-tennert.supabase", name = "postgrest-kt"}
+supabase-serializer-moshi = { group = "io.github.jan-tennert.supabase", name = "serializer-moshi"}
+ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version = "2.3.11" }
+ktor-serialization-json = { group = "io.ktor", name="ktor-serialization-kotlinx-json", version="2.3.11"}
+moshi = { group = "com.squareup.moshi", name = "moshi-kotlin", version = "1.15.1"}
 
 
 

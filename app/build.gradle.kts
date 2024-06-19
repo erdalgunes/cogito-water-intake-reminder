@@ -1,7 +1,15 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("kotlin-parcelize")
+    kotlin("plugin.serialization") version libs.versions.kotlin
+}
+
+val prop = Properties().apply {
+    load(FileInputStream(File(rootProject.rootDir, "local.properties")))
 }
 
 android {
@@ -17,7 +25,12 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildFeatures{
+            buildConfig = true
+        }
 
+        buildConfigField("String", "SUPABASE_URL", prop.getProperty("SupabaseUrl"))
+        buildConfigField("String", "SUPABASE_KEY", prop.getProperty("SupabaseKey"))
     }
 
     buildTypes {
@@ -53,6 +66,7 @@ dependencies {
     implementation(platform(libs.compose.bom))
     implementation(platform(libs.koin.annotations.bom))
     implementation(platform(libs.koin.bom))
+    implementation(platform(libs.supabase.bom))
 
     implementation(libs.activity.compose)
     implementation(libs.androidx.annotation)
@@ -81,6 +95,12 @@ dependencies {
     implementation(libs.androidx.wear)
     implementation(libs.androidx.wear.tooling.preview)
     implementation(libs.ui.tooling.preview)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.serialization.json)
+    implementation(libs.supabase.realtime)
+    implementation(libs.supabase.postgrest)
+    implementation(libs.supabase.serializer.moshi)
+    implementation(libs.moshi)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)

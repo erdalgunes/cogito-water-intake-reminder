@@ -9,12 +9,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.wear.compose.material.Text
 import androidx.wear.tooling.preview.devices.WearDevices
 import com.cogito.water.presentation.theme.WaterIntakeReminderTheme
-import com.cogito.water.screen.state.SummaryScreen
+import com.cogito.water.presentation.summary.state.SummaryScreen
 
 @Composable
 fun Summary(state: SummaryScreen.State, modifier: Modifier) {
+    val text = when(state.isError){
+        true -> "No Water Intake"
+        false -> "Water Intake: ${state.waterIntake} ml"
+    }
     Box(modifier, contentAlignment = Alignment.Center) {
-        Text(text = "Water Intake: ${state.waterIntake} ml")
+        Text(text = text)
     }
 }
 
@@ -22,6 +26,6 @@ fun Summary(state: SummaryScreen.State, modifier: Modifier) {
 @Composable
 fun SummaryPreview() {
     WaterIntakeReminderTheme {
-        Summary(SummaryScreen.State(300, 1000), Modifier.fillMaxSize())
+        Summary(SummaryScreen.State(false, 300, 1000), Modifier.fillMaxSize())
     }
 }
