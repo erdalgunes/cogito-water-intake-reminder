@@ -19,7 +19,6 @@ internal fun Project.configureSupabase(
 
             add("implementation", libs.findLibrary("supabase.postgrest").get())
             add("implementation", libs.findLibrary("supabase.realtime").get())
-            add("implementation", libs.findLibrary("compose.material").get())
             add("implementation", libs.findLibrary("supabase.serializer.moshi").get())
         }
     }

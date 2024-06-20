@@ -10,6 +10,7 @@ class AndroidWearConventionPlugin  : Plugin<Project> {
         with(target){
             apply(plugin = "com.android.application")
             apply(plugin = "kotlin-android")
+            apply(plugin = "org.jetbrains.kotlin.plugin.compose")
 
             val extension = extensions.getByType<ApplicationExtension>()
             configureAndroidWear(extension)

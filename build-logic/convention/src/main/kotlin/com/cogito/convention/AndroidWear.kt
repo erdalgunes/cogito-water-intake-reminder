@@ -16,7 +16,6 @@ internal fun Project.configureAndroidWear(
             val libs = project.extensions.getByType<VersionCatalogsExtension>().named("libs")
             add("implementation", libs.findLibrary("tiles").get())
             add("implementation", libs.findLibrary("tiles.material").get())
-            add("implementation", libs.findLibrary("ui.tooling.preview").get())
             add("implementation", libs.findLibrary("wear").get())
             add("implementation", libs.findLibrary("wear.tooling.preview").get())
             add("implementation", libs.findLibrary("play.services.wearable").get())
