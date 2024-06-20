@@ -64,6 +64,14 @@ gradlePlugin {
             id = "cogito.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
+        register("androidApplicationJacoco") {
+            id = "cogito.android.application.jacoco"
+            implementationClass = "AndroidApplicationJacocoConventionPlugin"
+        }
+        register("androidApplicationFlavors") {
+            id = "cogito.android.application.flavors"
+            implementationClass = "AndroidApplicationFlavorsConventionPlugin"
+        }
         register("androidLint") {
             id = "cogito.android.lint"
             implementationClass = "AndroidLintConventionPlugin"
