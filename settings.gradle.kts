@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
@@ -13,6 +14,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Water Intake Reminder"
+rootProject.name = "hydration-tracker"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
-include(":data")
