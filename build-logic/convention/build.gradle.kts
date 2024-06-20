@@ -64,5 +64,9 @@ gradlePlugin {
             id = "cogito.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
+        register("androidLint") {
+            id = "cogito.android.lint"
+            implementationClass = "AndroidLintConventionPlugin"
+        }
     }
 }
