@@ -74,10 +74,15 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.common)
     implementation(projects.core.designsystem)
 
     implementation(libs.moshi)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.horologist.compose.tools)
+    implementation(libs.koin.android)
+    implementation(libs.koin.android.compat)
+    implementation(libs.koin.compose)
+    implementation(libs.koin.androidx.compose)
 }

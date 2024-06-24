@@ -13,7 +13,6 @@ internal fun Project.configureAndroidWear(
     commonExtension.apply {
 
         dependencies {
-            val libs = project.extensions.getByType<VersionCatalogsExtension>().named("libs")
             add("implementation", libs.findLibrary("tiles").get())
             add("implementation", libs.findLibrary("tiles.material").get())
             add("implementation", libs.findLibrary("wear").get())

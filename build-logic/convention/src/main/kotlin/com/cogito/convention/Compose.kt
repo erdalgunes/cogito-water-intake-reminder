@@ -22,8 +22,6 @@ internal fun Project.configureCompose(
         }
 
         dependencies {
-            val libs = project.extensions.getByType<VersionCatalogsExtension>().named("libs")
-
             val composeBom = libs.findLibrary("androidx.compose.bom").get()
             add("implementation", platform(composeBom))
             add("androidTestImplementation", platform(composeBom))

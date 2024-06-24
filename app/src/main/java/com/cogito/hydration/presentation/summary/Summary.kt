@@ -1,7 +1,10 @@
 package com.cogito.hydration.presentation.summary
 
-import android.content.res.Configuration
-import android.widget.Toast
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,49 +20,47 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Fill
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.Text
 import androidx.wear.tooling.preview.devices.WearDevices
-import com.cogito.core.designsystem.theme.CogitoTheme
+import com.cogito.core.designsystem.theme.CogitoAndroidWearTheme
 import com.cogito.hydration.data.model.HydrationIntake
-import com.cogito.hydration.data.repository.HydrationRepository
-import com.cogito.hydration.presentation.summary.state.SummaryScreen
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.cogito.hydration.presentation.summary.state.SummaryEvent
+import com.cogito.hydration.presentation.summary.state.SummaryState
+import kotlin.math.PI
+import kotlin.math.sin
 
 @Composable
-fun Summary(state: SummaryScreen.State, modifier: Modifier, hydrationRepository: HydrationRepository? = null) {
-    val scope = rememberCoroutineScope()
-    val context = LocalContext.current
-    CogitoTheme {
-        SummaryContent(state, modifier){ amount ->
-            scope.launch(Dispatchers.IO) {
-                hydrationRepository?.addHydrationIntake(
-                    HydrationIntake(
-                        amount = amount,
-                        userId = 1,
-                    )
-                )
-            }
-            Toast.makeText(context, "Added", Toast.LENGTH_SHORT).show()
-        }
+fun Summary(
+    state: SummaryState,
+    modifier: Modifier,
+) {
+    CogitoAndroidWearTheme {
+        SummaryContent(state, modifier)
     }
 }
 
 @Composable
-fun SummaryContent(state: SummaryScreen.State, modifier: Modifier, onItemClick: (Int) -> Unit = {}){
+fun SummaryContent(
+    state: SummaryState,
+    modifier: Modifier,
+) {
     val configuration = LocalConfiguration.current
     val text = when (state.isError) {
         true -> "You didn't drink today"
@@ -69,12 +70,14 @@ fun SummaryContent(state: SummaryScreen.State, modifier: Modifier, onItemClick: 
         modifier.background(color = MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center
     ) {
-        WaterIntakeSummary(
+        HydrationSummary(
             today = state.hydrationToday ?: 0,
             goal = state.hydrationGoal ?: 0,
             modifier = Modifier
                 .fillMaxSize()
-                .align(Alignment.Center)
+                .align(Alignment.Center),
+            isLoading = state.isLoading,
+            loadingAmount = state.loadingAmount ?: 0,
         )
         Text(
             text = text,
@@ -100,9 +103,14 @@ fun SummaryContent(state: SummaryScreen.State, modifier: Modifier, onItemClick: 
                             shape = MaterialTheme.shapes.small,
                         )
                         .clickable {
-                            onItemClick(state.drinks[index].amount)
-                        }
-                    ,
+                            state.eventSink(
+                                SummaryEvent.AddHydration(
+                                HydrationIntake(
+                                    userId = 1,
+                                    amount = state.drinks[index].amount,
+                                )
+                            ))
+                        },
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
@@ -127,9 +135,57 @@ fun SummaryContent(state: SummaryScreen.State, modifier: Modifier, onItemClick: 
 }
 
 @Composable
-fun WaterIntakeSummary(today: Int, goal: Int, modifier: Modifier) {
+fun AnimatedWave(
+    modifier: Modifier = Modifier,
+    color: Color,
+    frequency: Float,
+    animationFillPercentage: Float,
+) {
+    val phase = remember { Animatable(0f) }
+    val height = remember { mutableFloatStateOf(0f) }
+
+    LaunchedEffect(Unit) {
+        phase.animateTo(
+            targetValue = 2 * PI.toFloat(),
+            animationSpec = infiniteRepeatable(
+                animation = tween(durationMillis = 1500, easing = LinearEasing),
+                repeatMode = RepeatMode.Restart
+            )
+        )
+    }
+
+    Canvas(modifier = modifier.onSizeChanged { height.floatValue = it.height.toFloat() }) {
+        val path = Path()
+        val animationFillSize = size.height * animationFillPercentage
+        val startY = size.height - animationFillSize
+
+        path.moveTo(0f, startY)
+        for (x in 0..size.width.toInt()) {
+            val dx = x / size.width
+            val dy = sin(dx * frequency * 2 * PI.toFloat() + phase.value) * 15f
+            path.lineTo(dx * size.width, startY + dy)
+        }
+
+        path.lineTo(size.width, size.height)
+        path.lineTo(0f, size.height)
+        path.close()
+
+        drawPath(path, color)
+    }
+}
+
+@Composable
+fun HydrationSummary(
+    modifier: Modifier,
+    today: Int,
+    goal: Int,
+    isLoading: Boolean = false,
+    loadingAmount: Int = 0
+) {
     val color = MaterialTheme.colorScheme.primary
     val fillPercentage = if (goal != 0) today.toFloat() / goal.toFloat() else 0f
+    val animationFillPercentage =
+        if (goal != 0) (today.toFloat() + loadingAmount.toFloat()) / goal.toFloat() else 0f
     Box(modifier = modifier.fillMaxSize()) {
         Canvas(modifier = Modifier.fillMaxSize()) {
             val fillSize = size.height * fillPercentage
@@ -143,32 +199,26 @@ fun WaterIntakeSummary(today: Int, goal: Int, modifier: Modifier) {
                 style = Fill
             )
         }
+        if (isLoading) {
+            AnimatedWave(
+                modifier = Modifier.fillMaxSize(),
+                color = color,
+                frequency = 1f,
+                animationFillPercentage = animationFillPercentage,
+            )
+        }
     }
 }
 
 @Preview(device = WearDevices.SMALL_ROUND, showSystemUi = true)
 @Composable
 fun SummaryPreview() {
-    CogitoTheme {
+    CogitoAndroidWearTheme {
         SummaryContent(
-            state = SummaryScreen.State(
+            state = SummaryState(
                 hydrationToday = 500,
                 hydrationGoal = 2000
-            ),
-            modifier = Modifier.fillMaxSize()
-        )
-    }
-}
-
-@Preview(device = WearDevices.SMALL_ROUND, showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun SummaryPreviewDark() {
-    CogitoTheme {
-        SummaryContent(
-            state = SummaryScreen.State(
-                hydrationToday = 500,
-                hydrationGoal = 2000
-            ),
+            ){},
             modifier = Modifier.fillMaxSize()
         )
     }

@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="11">
       <module name="hydration-tracker.app" target="17" />
+      <module name="hydration-tracker.core.common" target="17" />
       <module name="hydration-tracker.core.designsystem" target="17" />
     </bytecodeTargetLevel>
   </component>

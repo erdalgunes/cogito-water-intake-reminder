@@ -12,7 +12,6 @@ internal fun Project.configureKtor(
 ){
     commonExtension.apply {
         dependencies {
-            val libs = project.extensions.getByType<VersionCatalogsExtension>().named("libs")
             add("implementation", libs.findLibrary("ktor.client.cio").get())
             add("implementation", libs.findLibrary("ktor.serialization.json").get())
             add("implementation", libs.findLibrary("ktor.client.core").get())

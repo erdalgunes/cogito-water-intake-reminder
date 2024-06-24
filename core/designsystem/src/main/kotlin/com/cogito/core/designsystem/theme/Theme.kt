@@ -204,6 +204,32 @@ val LightAndroidBackgroundTheme = BackgroundTheme(color = onSecondaryDark)
  */
 val DarkAndroidBackgroundTheme = BackgroundTheme(color = Color.Black)
 
+@Composable
+fun CogitoAndroidWearTheme(
+    disableDynamicTheming: Boolean = true,
+    content: @Composable () -> Unit
+) {
+    CogitoAndroidTheme(
+        disableDynamicTheming = disableDynamicTheming,
+        isWearOs = true,
+        content = content,
+    )
+}
+
+@Composable
+fun CogitoAndroidTheme(
+    disableDynamicTheming: Boolean = true,
+    isWearOs: Boolean = false,
+    content: @Composable () -> Unit,
+) {
+    CogitoTheme(
+        androidTheme = true,
+        disableDynamicTheming = disableDynamicTheming,
+        content = content,
+        darkTheme = isWearOs || isSystemInDarkTheme()
+    )
+}
+
 /**
  * Cogito theme.
  *

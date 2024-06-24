@@ -12,8 +12,6 @@ internal fun Project.configureSupabase(
 ) {
     commonExtension.apply {
         dependencies {
-            val libs = project.extensions.getByType<VersionCatalogsExtension>().named("libs")
-
             val supabaseBom = libs.findLibrary("supabase.bom").get()
             add("implementation", platform(supabaseBom))
 

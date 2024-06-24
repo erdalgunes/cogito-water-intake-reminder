@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `kotlin-dsl`
@@ -87,6 +86,10 @@ gradlePlugin {
         register("androidLibraryJacoco") {
             id = "cogito.android.library.jacoco"
             implementationClass = "AndroidLibraryJacocoConventionPlugin"
+        }
+        register("jvmLibrary") {
+            id = "cogito.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
         }
     }
 }

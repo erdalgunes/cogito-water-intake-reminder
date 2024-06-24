@@ -12,7 +12,6 @@ internal fun Project.configureCircuit(
 ){
     commonExtension.apply {
         dependencies {
-            val libs = project.extensions.getByType<VersionCatalogsExtension>().named("libs")
             add("implementation", libs.findLibrary("circuit").get())
         }
     }
