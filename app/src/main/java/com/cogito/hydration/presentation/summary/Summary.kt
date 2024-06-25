@@ -45,6 +45,7 @@ import com.cogito.core.designsystem.theme.CogitoAndroidWearTheme
 import com.cogito.hydration.data.model.HydrationIntake
 import com.cogito.hydration.presentation.summary.state.SummaryEvent
 import com.cogito.hydration.presentation.summary.state.SummaryState
+import com.cogito.notification.NotificationPermissionEffect
 import kotlin.math.PI
 import kotlin.math.sin
 
@@ -66,10 +67,10 @@ fun SummaryContent(
     val context = LocalContext.current.applicationContext
     val configuration = LocalConfiguration.current
     if (state.isError) {
-        Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
         return
     }
-
+    NotificationPermissionEffect()
     Box(
         modifier.background(color = MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center
@@ -145,7 +146,6 @@ fun SummaryContent(
             }
         }
     }
-
 }
 
 @Composable

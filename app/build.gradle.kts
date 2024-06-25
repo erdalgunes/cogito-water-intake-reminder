@@ -76,6 +76,7 @@ android {
 dependencies {
     implementation(projects.core.common)
     implementation(projects.core.designsystem.app)
+    implementation(projects.feature.notification)
 
     implementation(libs.moshi)
     implementation(libs.androidx.activity.compose)

@@ -7,6 +7,7 @@
       <module name="hydration-tracker.core.designsystem.app" target="17" />
       <module name="hydration-tracker.core.domain" target="17" />
       <module name="hydration-tracker.core.model" target="17" />
+      <module name="hydration-tracker.feature.notification" target="17" />
       <module name="hydration-tracker.feature.tile.hydration" target="17" />
     </bytecodeTargetLevel>
   </component>
