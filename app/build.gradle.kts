@@ -76,7 +76,6 @@ android {
 dependencies {
     implementation(projects.core.common)
     implementation(projects.core.designsystem.app)
-    implementation(projects.feature.tile.hydration)
 
     implementation(libs.moshi)
     implementation(libs.androidx.activity.compose)

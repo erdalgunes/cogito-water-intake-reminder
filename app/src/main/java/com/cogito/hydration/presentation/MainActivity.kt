@@ -9,7 +9,7 @@ import com.cogito.hydration.presentation.app.WearApp
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
+        //installSplashScreen()
 
         super.onCreate(savedInstanceState)
 

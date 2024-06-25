@@ -34,26 +34,35 @@ class SummaryPresenter(
         val lifecycleOwner = LocalLifecycleOwner.current
         val coroutineScope = rememberCoroutineScope()
         var waterIntake by remember { mutableStateOf<DailyHydrationIntake?>(null) }
-        var isLoading by remember { mutableStateOf(false) }
-        var loadingAmount by remember { mutableIntStateOf(0) }
+        var isLoading by remember { mutableStateOf(true) }
+        var loadingAmount by remember { mutableIntStateOf(500) }
+        var isError by remember { mutableStateOf(false) }
 
         DisposableEffect(Unit) {
             val observer = LifecycleEventObserver { _, event ->
                 when (event) {
                     Lifecycle.Event.ON_START -> {
                         coroutineScope.launch(ioDispatcher) {
-                            waterIntakeRepository.getHydrationIntakeForTheDay(1)
-                                .onEach {
-                                    isLoading = false
-                                    waterIntake = it
-                                }.launchIn(lifecycleOwner.lifecycleScope)
-                            waterIntakeRepository.subscribeToRealtimeChannel()
+                            try {
+                                waterIntakeRepository.getHydrationIntakeForTheDay(1)
+                                    .onEach {
+                                        isLoading = false
+                                        waterIntake = it
+                                    }.launchIn(lifecycleOwner.lifecycleScope)
+                                waterIntakeRepository.subscribeToRealtimeChannel()
+                            } catch (e: Exception) {
+                                isError = true
+                            }
                         }
                     }
 
                     Lifecycle.Event.ON_STOP -> {
                         coroutineScope.launch(ioDispatcher) {
-                            waterIntakeRepository.unsubscribeRealtimeChannel()
+                            try {
+                                waterIntakeRepository.unsubscribeRealtimeChannel()
+                            } catch (e: Exception) {
+                                isError = true
+                            }
                         }
                     }
 
@@ -67,7 +76,7 @@ class SummaryPresenter(
         }
 
         return SummaryState(
-            isError = waterIntake == null,
+            isError = isError,
             hydrationGoal = waterIntake?.userGoal,
             hydrationToday = waterIntake?.totalIntake,
             isLoading = isLoading,

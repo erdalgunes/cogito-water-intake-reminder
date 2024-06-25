@@ -23,7 +23,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -66,11 +65,10 @@ fun SummaryContent(
 ) {
     val context = LocalContext.current.applicationContext
     val configuration = LocalConfiguration.current
-    if(state.isError){
+    if (state.isError) {
         Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
         return
     }
-
 
     Box(
         modifier.background(color = MaterialTheme.colorScheme.background),
@@ -85,13 +83,22 @@ fun SummaryContent(
             isLoading = state.isLoading,
             loadingAmount = state.loadingAmount ?: 0,
         )
-        Text(
-            text = "${state.hydrationToday} ml",
-            color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier
-                .align(Alignment.Center)
-                .padding(bottom = 32.dp)
-        )
+        if (state.hydrationToday != null) {
+            Box(
+                modifier = Modifier
+                    .padding(bottom = 32.dp)
+                    .background(color = MaterialTheme.colorScheme.primary, shape = MaterialTheme.shapes.small),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text(
+                    text = "${state.hydrationToday} ml",
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .padding(4.dp)
+                )
+            }
+        }
         LazyRow(
             modifier = Modifier
                 .fillMaxWidth()
@@ -111,11 +118,12 @@ fun SummaryContent(
                         .clickable {
                             state.eventSink(
                                 SummaryEvent.AddHydration(
-                                HydrationIntake(
-                                    userId = 1,
-                                    amount = state.drinks[index].amount,
+                                    HydrationIntake(
+                                        userId = 1,
+                                        amount = state.drinks[index].amount,
+                                    )
                                 )
-                            ))
+                            )
                         },
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -224,7 +232,7 @@ fun SummaryPreview() {
             state = SummaryState(
                 hydrationToday = 500,
                 hydrationGoal = 2000
-            ){},
+            ) {},
             modifier = Modifier.fillMaxSize()
         )
     }

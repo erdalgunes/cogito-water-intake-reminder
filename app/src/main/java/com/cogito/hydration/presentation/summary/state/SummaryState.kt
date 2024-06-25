@@ -1,8 +1,10 @@
 package com.cogito.hydration.presentation.summary.state
 
+import androidx.compose.runtime.Stable
 import com.cogito.hydration.presentation.summary.model.Drink
 import com.slack.circuit.runtime.CircuitUiState
 
+@Stable
 data class SummaryState(
     val isError: Boolean = false,
     val isLoading: Boolean = false,
