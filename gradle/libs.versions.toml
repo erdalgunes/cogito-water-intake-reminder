@@ -46,6 +46,8 @@ androidxComposeMaterial3AdaptiveNavigationSuite = "1.3.0-beta03"
 androidxComposeMaterial3Adaptive = "1.0.0-beta03"
 kotlinxCoroutines = "1.8.1"
 turbine = "1.1.0"
+androidXGlanceWearTiles = "1.0.0-alpha05"
+androidXGlance = "1.1.0"
 
 [libraries]
 androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
@@ -155,6 +157,9 @@ roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", versi
 kotlinx-coroutines-guava = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-guava", version.ref = "kotlinxCoroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+androidx-glance-wear-tiles = { group = "androidx.glance", name = "glance-wear-tiles", version.ref = "androidXGlanceWearTiles" }
+androidx-glance = { group = "androidx.glance", name = "glance", version.ref = "androidXGlance" }
+androidx-glance-preview = { group = "androidx.glance", name = "glance-preview", version.ref = "androidXGlance" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -195,3 +200,4 @@ cogito-android-library = { id = "cogito.android.library", version = "unspecified
 cogito-android-library-compose = { id = "cogito.android.library.compose", version = "unspecified" }
 cogito-android-library-jacoco = { id = "cogito.android.library.jacoco", version = "unspecified" }
 cogito-jvm-library = { id = "cogito.jvm.library", version = "unspecified" }
+cogito-android-library-glance = { id = "cogito.android.library.glance", version = "unspecified" }

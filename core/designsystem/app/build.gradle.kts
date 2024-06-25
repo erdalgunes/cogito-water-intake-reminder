@@ -9,7 +9,7 @@ android {
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    namespace = "cogito.core.designsystem"
+    namespace = "cogito.core.designsystem.app"
 }
 
 dependencies{

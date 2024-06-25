@@ -1,5 +1,6 @@
 package com.cogito.hydration.presentation.summary
 
+import android.widget.Toast
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -22,6 +23,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,6 +35,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -61,11 +64,14 @@ fun SummaryContent(
     state: SummaryState,
     modifier: Modifier,
 ) {
+    val context = LocalContext.current.applicationContext
     val configuration = LocalConfiguration.current
-    val text = when (state.isError) {
-        true -> "You didn't drink today"
-        false -> "${state.hydrationToday} ml"
+    if(state.isError){
+        Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+        return
     }
+
+
     Box(
         modifier.background(color = MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center
@@ -80,7 +86,7 @@ fun SummaryContent(
             loadingAmount = state.loadingAmount ?: 0,
         )
         Text(
-            text = text,
+            text = "${state.hydrationToday} ml",
             color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier
                 .align(Alignment.Center)

@@ -91,5 +91,9 @@ gradlePlugin {
             id = "cogito.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
         }
+        register("androidLibraryGlance"){
+            id = "cogito.android.library.glance"
+            implementationClass = "AndroidLibraryGlanceConventionPlugin"
+        }
     }
 }

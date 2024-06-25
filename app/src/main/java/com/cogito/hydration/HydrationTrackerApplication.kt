@@ -12,14 +12,14 @@ import org.koin.core.context.GlobalContext.startKoin
 import org.koin.core.lazyModules
 
 
-class WaterIntakeTrackerApplication : Application() {
+class HydrationTrackerApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
             // Log Koin into Android logger
             androidLogger()
             // Reference Android context
-            androidContext(this@WaterIntakeTrackerApplication)
+            androidContext(this@HydrationTrackerApplication)
 
             modules(appModule, dataModule, dispatchersModule, coroutineScopesModule)
             lazyModules(presentationModule)
