@@ -42,9 +42,10 @@ import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.Text
 import androidx.wear.tooling.preview.devices.WearDevices
 import com.cogito.core.designsystem.theme.CogitoAndroidWearTheme
-import com.cogito.hydration.data.model.HydrationIntake
 import com.cogito.hydration.presentation.summary.state.SummaryEvent
 import com.cogito.hydration.presentation.summary.state.SummaryState
+import com.cogito.model.data.HydrationDataModel
+import kotlinx.datetime.Clock
 import kotlin.math.PI
 import kotlin.math.sin
 
@@ -87,7 +88,10 @@ fun SummaryContent(
             Box(
                 modifier = Modifier
                     .padding(bottom = 32.dp)
-                    .background(color = MaterialTheme.colorScheme.primary, shape = MaterialTheme.shapes.small),
+                    .background(
+                        color = MaterialTheme.colorScheme.primary,
+                        shape = MaterialTheme.shapes.small
+                    ),
                 contentAlignment = Alignment.Center,
             ) {
                 Text(
@@ -118,9 +122,9 @@ fun SummaryContent(
                         .clickable {
                             state.eventSink(
                                 SummaryEvent.AddHydration(
-                                    HydrationIntake(
-                                        userId = 1,
-                                        amount = state.drinks[index].amount,
+                                    HydrationDataModel(
+                                        state.drinks[index].amount,
+                                        Clock.System.now(),
                                     )
                                 )
                             )

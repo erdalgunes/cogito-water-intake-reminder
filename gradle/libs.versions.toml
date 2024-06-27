@@ -1,8 +1,5 @@
 [versions]
-jacoco = "0.8.7"
-androidxTracing = "1.3.0-alpha02"
 androidDesugarJdkLibs = "2.0.4"
-androidxActivity = "1.9.0"
 androidGradlePlugin = "8.5.0"
 androidTools = "31.5.0"
 androidXAnnotation = "1.8.0"
@@ -11,103 +8,85 @@ androidXAppCompat = "1.7.0"
 androidXConcurrent = "1.2.0"
 androidXCore = "1.13.1"
 androidXDatastore = "1.1.1"
+androidXGlance = "1.1.0"
+androidXGlanceWearTiles = "1.0.0-alpha05"
 androidXLifecycle = "2.8.2"
-androidXRoom = "2.6.1"
 androidXSavedState = "1.2.1"
-androidXTestCore = "1.5.0"
+androidXTestCore = "1.6.1"
 androidXWearInput = "1.1.0"
 androidXWearOngoing = "1.0.0"
 androidXWearPhoneInteractions = "1.0.1"
 androidXWearRemoteInteractions = "1.0.0"
 androidXWearWatchFace = "1.2.1"
 androidXWork = "2.9.0"
+androidxActivity = "1.9.0"
+androidxComposeAlpha = "1.7.0-beta04"
+androidxComposeMaterial3Adaptive = "1.0.0-beta04"
+androidxComposeMaterial3AdaptiveNavigationSuite = "1.3.0-beta04"
+androidxTracing = "1.3.0-alpha02"
 circuit = "0.22.0"
 composeBom = "2024.06.00"
+composeCompilerGradlePlugin = "2.0.0"
 coreSplashscreen = "1.2.0-alpha01"
 firebaseCrashlyticsPlugin = "3.0.2"
 firebasePerfPlugin = "1.4.2"
 horologistComposeTools = "0.4.8"
 horologistTiles = "0.4.8"
-koinKspVersion = "1.3.1"
+jacoco = "0.8.7"
 koinBom = "3.6.0-Beta4"
+koinKspVersion = "1.3.1"
 kotlin = "2.0.0"
+kotlinxCoroutines = "1.8.1"
 kspPlugin = "2.0.0-1.0.22"
-playServicesWearable = "18.2.0"
-room = "2.6.1"
-wear = "1.3.0"
-wearCompose = "1.3.1"
-truth = "1.4.2"
-composeCompilerGradlePlugin = "2.0.0"
 ktor = "2.3.11"
+playServicesWearable = "18.2.0"
 robolectric = "4.11.1"
 roborazzi = "1.7.0"
-androidxComposeAlpha = "1.7.0-beta03"
-androidxComposeMaterial3AdaptiveNavigationSuite = "1.3.0-beta03"
-androidxComposeMaterial3Adaptive = "1.0.0-beta03"
-kotlinxCoroutines = "1.8.1"
+room = "2.6.1"
+truth = "1.4.2"
 turbine = "1.1.0"
-androidXGlanceWearTiles = "1.0.0-alpha05"
-androidXGlance = "1.1.0"
+wear = "1.3.0"
+wearCompose = "1.3.1"
+kotlinxDatetime = "0.6.0"
 
 [libraries]
+android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
+androidx-compose-animation = { group = "androidx.compose.animation", name = "animation" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidxComposeAlpha" }
 androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
 androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
-androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
-androidx-compose-material3-navigationSuite = { group = "androidx.compose.material3", name = "material3-adaptive-navigation-suite", version.ref = "androidxComposeMaterial3AdaptiveNavigationSuite" }
 androidx-compose-material3-adaptive = { group = "androidx.compose.material3.adaptive", name = "adaptive", version.ref = "androidxComposeMaterial3Adaptive" }
-androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util" }
+androidx-compose-material3-navigationSuite = { group = "androidx.compose.material3", name = "material3-adaptive-navigation-suite", version.ref = "androidxComposeMaterial3AdaptiveNavigationSuite" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
 androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "androidxComposeAlpha" }
 androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
+androidx-glance = { group = "androidx.glance", name = "glance", version.ref = "androidXGlance" }
+androidx-glance-preview = { group = "androidx.glance", name = "glance-preview", version.ref = "androidXGlance" }
+androidx-glance-wear-tiles = { group = "androidx.glance", name = "glance-wear-tiles", version.ref = "androidXGlanceWearTiles" }
 androidx-tracing-ktx = { group = "androidx.tracing", name = "tracing-ktx", version.ref = "androidxTracing" }
-android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
-androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
+androidx-wear-compose-foundation = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "wearCompose" }
+androidx-wear-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "wearCompose" }
+androidx-wear-compose-navigation = { group = "androidx.wear.compose", name = "compose-navigation", version.ref = "wearCompose" }
+androidx-wear-compose-ui-tooling = { group = "androidx.wear.compose", name = "compose-ui-tooling" }
 annotation = { group = "androidx.annotation", name = "annotation", version.ref = "androidXAnnotation" }
 annotation-experimental = { group = "androidx.annotation", name = "annotation-experimental", version.ref = "androidXAnnotationExperimental" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidXAppCompat" }
+circuit = { group = "com.slack.circuit", name = "circuit-foundation", version.ref = "circuit" }
+compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
+compose-viewmodel = { group = "androidx.compose.runtime", name = "runtime-viewmodel" }
 concurrent-futures = { group = "androidx.concurrent", name = "concurrent-futures", version.ref = "androidXConcurrent" }
 concurrent-futures-ktx = { group = "androidx.concurrent", name = "concurrent-futures-ktx", version.ref = "androidXConcurrent" }
 core = { group = "androidx.core", name = "core", version.ref = "androidXCore" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidXCore" }
 core-performance = { group = "androidx.core", name = "core-performance", version.ref = "androidXCore" }
 datastore-core = { group = "androidx.datastore", name = "datastore-core", version.ref = "androidXDatastore" }
-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidXLifecycle" }
-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidXLifecycle" }
-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidXLifecycle" }
-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidXLifecycle" }
-lifecycle-viewmodel-savedstate = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-savedstate", version.ref = "androidXLifecycle" }
-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidXRoom" }
-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidXRoom" }
-savedstate = { group = "androidx.savedstate", name = "savedstate", version.ref = "androidXSavedState" }
-savedstate-ktx = { group = "androidx.savedstate", name = "savedstate-ktx", version.ref = "androidXSavedState" }
-test-core = { group = "androidx.test", name = "core", version.ref = "androidXTestCore" }
-test-core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "androidXTestCore" }
-wear = { group = "androidx.wear", name = "wear", version.ref = "wear" }
-wear-input = { group = "androidx.wear", name = "wear-input", version.ref = "androidXWearInput" }
-wear-input-testing = { group = "androidx.wear", name = "wear-input-testing", version.ref = "androidXWearInput" }
-wear-ongoing = { group = "androidx.wear", name = "wear-ongoing", version.ref = "androidXWearOngoing" }
-wear-phone-interactions = { group = "androidx.wear", name = "wear-phone-interactions", version.ref = "androidXWearPhoneInteractions" }
-wear-remote-interactions = { group = "androidx.wear", name = "wear-remote-interactions", version.ref = "androidXWearRemoteInteractions" }
-wear-tooling-preview = { group = "androidx.wear", name = "wear-tooling-preview", version = "1.0.0" }
-wear-watchface = { group = "androidx.wear.watchface", name = "watchface", version.ref = "androidXWearWatchFace" }
-wear-watchface-complications-data-source = { group = "androidx.wear.watchface", name = "watchface-complications-data-source", version.ref = "androidXWearWatchFace" }
-wear-watchface-complications-data-source-ktx = { group = "androidx.wear.watchface", name = "watchface-complications-data-source-ktx", version.ref = "androidXWearWatchFace" }
-wear-watchface-complications-rendering = { group = "androidx.wear.watchface", name = "watchface-complications-rendering", version.ref = "androidXWearWatchFace" }
-wear-watchface-editor = { group = "androidx.wear.watchface", name = "watchface-editor", version.ref = "androidXWearWatchFace" }
-work-multiprocess = { group = "androidx.work", name = "work-multiprocess", version.ref = "androidXWork" }
-work-runtime = { group = "androidx.work", name = "work-runtime", version.ref = "androidXWork" }
-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "androidXWork" }
-circuit = { group = "com.slack.circuit", name = "circuit-foundation", version.ref = "circuit" }
-androidx-compose-animation = { group = "androidx.compose.animation", name = "animation" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
-androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidxComposeAlpha" }
-androidx-wear-compose-foundation = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "wearCompose" }
-androidx-wear-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "wearCompose" }
-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
-compose-viewmodel = { group = "androidx.compose.runtime", name = "runtime-viewmodel" }
-androidx-wear-compose-navigation = { group = "androidx.wear.compose", name = "compose-navigation", version.ref = "wearCompose" }
-androidx-wear-compose-ui-tooling = { group = "androidx.wear.compose", name = "compose-ui-tooling" }
-androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
 horologist-compose-tools = { group = "com.google.android.horologist", name = "horologist-compose-tools", version.ref = "horologistComposeTools" }
 horologist-tiles = { group = "com.google.android.horologist", name = "horologist-tiles", version.ref = "horologistTiles" }
 koin-android = { group = "io.insert-koin", name = "koin-android" }
@@ -125,41 +104,64 @@ koin-core-coroutines = { group = "io.insert-koin", name = "koin-core-coroutines"
 koin-ksp-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koinKspVersion" }
 koin-ktor = { group = "io.insert-koin", name = "koin-ktor" }
 koin-test = { group = "io.insert-koin", name = "koin-test" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlinx-coroutines-guava = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-guava", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDatetime" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
-ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
-ktor-client-websockets = { module = "io.ktor:ktor-client-websockets", version.ref = "ktor" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
-ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
+ktor-client-websockets = { module = "io.ktor:ktor-client-websockets", version.ref = "ktor" }
+ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-server-cio = { module = "io.ktor:ktor-server-cio", version.ref = "ktor" }
 ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
+ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
+lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidXLifecycle" }
+lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidXLifecycle" }
+lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidXLifecycle" }
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidXLifecycle" }
+lifecycle-viewmodel-savedstate = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-savedstate", version.ref = "androidXLifecycle" }
+lint-api = { group = "com.android.tools.lint", name = "lint-api", version.ref = "androidTools" }
+lint-checks = { group = "com.android.tools.lint", name = "lint-checks", version.ref = "androidTools" }
+lint-tests = { group = "com.android.tools.lint", name = "lint-tests", version.ref = "androidTools" }
 moshi = { group = "com.squareup.moshi", name = "moshi-kotlin", version = "1.15.1" }
 play-services-wearable = { group = "com.google.android.gms", name = "play-services-wearable", version.ref = "playServicesWearable" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+savedstate = { group = "androidx.savedstate", name = "savedstate", version.ref = "androidXSavedState" }
+savedstate-ktx = { group = "androidx.savedstate", name = "savedstate-ktx", version.ref = "androidXSavedState" }
 supabase-bom = { group = "io.github.jan-tennert.supabase", name = "bom", version = "2.5.0" }
 supabase-postgrest = { group = "io.github.jan-tennert.supabase", name = "postgrest-kt" }
 supabase-realtime = { group = "io.github.jan-tennert.supabase", name = "realtime-kt" }
 supabase-serializer-moshi = { group = "io.github.jan-tennert.supabase", name = "serializer-moshi" }
+test-core = { group = "androidx.test", name = "core", version.ref = "androidXTestCore" }
+test-core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "androidXTestCore" }
 tiles = { group = "androidx.wear.tiles", name = "tiles", version.ref = "wear" }
 tiles-material = { group = "androidx.wear.tiles", name = "tiles-material", version.ref = "wear" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
-lint-api = { group = "com.android.tools.lint", name = "lint-api", version.ref = "androidTools" }
-lint-checks = { group = "com.android.tools.lint", name = "lint-checks", version.ref = "androidTools" }
-lint-tests = { group = "com.android.tools.lint", name = "lint-tests", version.ref = "androidTools" }
-robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
-roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
-kotlinx-coroutines-guava = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-guava", version.ref = "kotlinxCoroutines" }
-kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
-turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
-androidx-glance-wear-tiles = { group = "androidx.glance", name = "glance-wear-tiles", version.ref = "androidXGlanceWearTiles" }
-androidx-glance = { group = "androidx.glance", name = "glance", version.ref = "androidXGlance" }
-androidx-glance-preview = { group = "androidx.glance", name = "glance-preview", version.ref = "androidXGlance" }
+wear = { group = "androidx.wear", name = "wear", version.ref = "wear" }
+wear-input = { group = "androidx.wear", name = "wear-input", version.ref = "androidXWearInput" }
+wear-input-testing = { group = "androidx.wear", name = "wear-input-testing", version.ref = "androidXWearInput" }
+wear-ongoing = { group = "androidx.wear", name = "wear-ongoing", version.ref = "androidXWearOngoing" }
+wear-phone-interactions = { group = "androidx.wear", name = "wear-phone-interactions", version.ref = "androidXWearPhoneInteractions" }
+wear-remote-interactions = { group = "androidx.wear", name = "wear-remote-interactions", version.ref = "androidXWearRemoteInteractions" }
+wear-tooling-preview = { group = "androidx.wear", name = "wear-tooling-preview", version = "1.0.0" }
+wear-watchface = { group = "androidx.wear.watchface", name = "watchface", version.ref = "androidXWearWatchFace" }
+wear-watchface-complications-data-source = { group = "androidx.wear.watchface", name = "watchface-complications-data-source", version.ref = "androidXWearWatchFace" }
+wear-watchface-complications-data-source-ktx = { group = "androidx.wear.watchface", name = "watchface-complications-data-source-ktx", version.ref = "androidXWearWatchFace" }
+wear-watchface-complications-rendering = { group = "androidx.wear.watchface", name = "watchface-complications-rendering", version.ref = "androidXWearWatchFace" }
+wear-watchface-editor = { group = "androidx.wear.watchface", name = "watchface-editor", version.ref = "androidXWearWatchFace" }
+work-multiprocess = { group = "androidx.work", name = "work-multiprocess", version.ref = "androidXWork" }
+work-runtime = { group = "androidx.work", name = "work-runtime", version.ref = "androidXWork" }
+work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "androidXWork" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -167,37 +169,39 @@ android-tools-common = { group = "com.android.tools", name = "common", version.r
 compose-gradlePlugin = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "composeCompilerGradlePlugin" }
 firebase-crashlytics-gradlePlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsPlugin" }
 firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebasePerfPlugin" }
+javax-inject = { module = "javax.inject:javax.inject", version = "1" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "kspPlugin" }
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
-javax-inject = { module = "javax.inject:javax.inject", version = "1" }
 
 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "kspPlugin" }
-roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "kspPlugin" }
+roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
+room = { id = "androidx.room", version.ref = "room" }
 
 # Plugins defined in the included build-logic
-cogito-android-wear = { id = "cogito.android.wear", version = "unspecified" }
-cogito-koin = { id = "cogito.koin", version = "unspecified" }
-cogito-ktor = { id = "cogito.ktor", version = "unspecified" }
-cogito-supabase = { id = "cogito.supabase", version = "unspecified" }
-cogito-circuit = { id = "cogito.circuit", version = "unspecified" }
-cogito-compose = { id = "cogito.compose", version = "unspecified" }
 cogito-android-application = { id = "cogito.android.application", version = "unspecified" }
 cogito-android-application-flavors = { id = "cogito.android.application.flavors", version = "unspecified" }
 cogito-android-application-jacoco = { id = "cogito.android.application.jacoco", version = "unspecified" }
-cogito-android-lint = { id = "cogito.android.lint", version = "unspecified" }
 cogito-android-library = { id = "cogito.android.library", version = "unspecified" }
 cogito-android-library-compose = { id = "cogito.android.library.compose", version = "unspecified" }
-cogito-android-library-jacoco = { id = "cogito.android.library.jacoco", version = "unspecified" }
-cogito-jvm-library = { id = "cogito.jvm.library", version = "unspecified" }
 cogito-android-library-glance = { id = "cogito.android.library.glance", version = "unspecified" }
+cogito-android-library-jacoco = { id = "cogito.android.library.jacoco", version = "unspecified" }
+cogito-android-lint = { id = "cogito.android.lint", version = "unspecified" }
+cogito-android-wear = { id = "cogito.android.wear", version = "unspecified" }
+cogito-circuit = { id = "cogito.circuit", version = "unspecified" }
+cogito-compose = { id = "cogito.compose", version = "unspecified" }
+cogito-jvm-library = { id = "cogito.jvm.library", version = "unspecified" }
+cogito-koin = { id = "cogito.koin", version = "unspecified" }
+cogito-ktor = { id = "cogito.ktor", version = "unspecified" }
+cogito-android-room = { id = "cogito.android.room", version = "unspecified" }
+cogito-supabase = { id = "cogito.supabase", version = "unspecified" }

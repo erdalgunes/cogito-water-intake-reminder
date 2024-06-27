@@ -7,13 +7,13 @@ plugins {
 group = "com.cogito.buildlogic"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 kotlin {
     compilerOptions {
-        jvmTarget = JvmTarget.JVM_11
+        jvmTarget = JvmTarget.JVM_17
     }
 }
 
@@ -23,6 +23,7 @@ dependencies {
     compileOnly(libs.compose.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
+    compileOnly(libs.room.gradlePlugin)
     implementation(libs.truth)
 }
 
@@ -94,6 +95,10 @@ gradlePlugin {
         register("androidLibraryGlance"){
             id = "cogito.android.library.glance"
             implementationClass = "AndroidLibraryGlanceConventionPlugin"
+        }
+        register("androidRoom"){
+            id = "cogito.android.room"
+            implementationClass = "AndroidRoomConventionPlugin"
         }
     }
 }
