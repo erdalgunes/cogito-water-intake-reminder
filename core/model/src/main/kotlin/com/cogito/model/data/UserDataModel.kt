@@ -1,7 +1,6 @@
 package com.cogito.model.data
 
 data class UserDataModel(
-    val name: String,
-    val email: String,
+    val id: String,
     val goal: Int,
 )

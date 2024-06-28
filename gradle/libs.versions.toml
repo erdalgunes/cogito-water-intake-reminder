@@ -75,7 +75,7 @@ androidx-wear-compose-foundation = { group = "androidx.wear.compose", name = "co
 androidx-wear-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "wearCompose" }
 androidx-wear-compose-navigation = { group = "androidx.wear.compose", name = "compose-navigation", version.ref = "wearCompose" }
 androidx-wear-compose-ui-tooling = { group = "androidx.wear.compose", name = "compose-ui-tooling" }
-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "androidXAnnotation" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "androidXAnnotation" }
 annotation-experimental = { group = "androidx.annotation", name = "annotation-experimental", version.ref = "androidXAnnotationExperimental" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidXAppCompat" }
 circuit = { group = "com.slack.circuit", name = "circuit-foundation", version.ref = "circuit" }
@@ -147,13 +147,13 @@ turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-wear = { group = "androidx.wear", name = "wear", version.ref = "wear" }
+androidx-wear = { group = "androidx.wear", name = "wear", version.ref = "wear" }
 wear-input = { group = "androidx.wear", name = "wear-input", version.ref = "androidXWearInput" }
 wear-input-testing = { group = "androidx.wear", name = "wear-input-testing", version.ref = "androidXWearInput" }
 wear-ongoing = { group = "androidx.wear", name = "wear-ongoing", version.ref = "androidXWearOngoing" }
 wear-phone-interactions = { group = "androidx.wear", name = "wear-phone-interactions", version.ref = "androidXWearPhoneInteractions" }
 wear-remote-interactions = { group = "androidx.wear", name = "wear-remote-interactions", version.ref = "androidXWearRemoteInteractions" }
-wear-tooling-preview = { group = "androidx.wear", name = "wear-tooling-preview", version = "1.0.0" }
+androidx-wear-tooling-preview = { group = "androidx.wear", name = "wear-tooling-preview", version = "1.0.0" }
 wear-watchface = { group = "androidx.wear.watchface", name = "watchface", version.ref = "androidXWearWatchFace" }
 wear-watchface-complications-data-source = { group = "androidx.wear.watchface", name = "watchface-complications-data-source", version.ref = "androidXWearWatchFace" }
 wear-watchface-complications-data-source-ktx = { group = "androidx.wear.watchface", name = "watchface-complications-data-source-ktx", version.ref = "androidXWearWatchFace" }
@@ -174,8 +174,6 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "kspPlugin" }
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
 
-
-
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
@@ -190,18 +188,20 @@ room = { id = "androidx.room", version.ref = "room" }
 
 # Plugins defined in the included build-logic
 cogito-android-application = { id = "cogito.android.application", version = "unspecified" }
+cogito-android-application-compose = { id = "cogito.android.application.compose", version = "unspecified" }
 cogito-android-application-flavors = { id = "cogito.android.application.flavors", version = "unspecified" }
 cogito-android-application-jacoco = { id = "cogito.android.application.jacoco", version = "unspecified" }
+cogito-android-feature = { id = "cogito.android.feature", version = "unspecified" }
+cogito-android-feature-wear = { id = "cogito.android.feature.wear", version = "unspecified" }
 cogito-android-library = { id = "cogito.android.library", version = "unspecified" }
 cogito-android-library-compose = { id = "cogito.android.library.compose", version = "unspecified" }
 cogito-android-library-glance = { id = "cogito.android.library.glance", version = "unspecified" }
 cogito-android-library-jacoco = { id = "cogito.android.library.jacoco", version = "unspecified" }
 cogito-android-lint = { id = "cogito.android.lint", version = "unspecified" }
+cogito-android-room = { id = "cogito.android.room", version = "unspecified" }
 cogito-android-wear = { id = "cogito.android.wear", version = "unspecified" }
 cogito-circuit = { id = "cogito.circuit", version = "unspecified" }
-cogito-compose = { id = "cogito.compose", version = "unspecified" }
 cogito-jvm-library = { id = "cogito.jvm.library", version = "unspecified" }
 cogito-koin = { id = "cogito.koin", version = "unspecified" }
 cogito-ktor = { id = "cogito.ktor", version = "unspecified" }
-cogito-android-room = { id = "cogito.android.room", version = "unspecified" }
 cogito-supabase = { id = "cogito.supabase", version = "unspecified" }

@@ -36,9 +36,9 @@ tasks {
 
 gradlePlugin {
     plugins {
-        register("androidWear") {
-            id = "cogito.android.wear"
-            implementationClass = "AndroidWearConventionPlugin"
+        register("androidLibraryWear") {
+            id = "cogito.android.library.wear"
+            implementationClass = "AndroidLibraryWearConventionPlugin"
         }
         register("koin") {
             id = "cogito.koin"
@@ -52,9 +52,9 @@ gradlePlugin {
             id = "cogito.ktor"
             implementationClass = "KtorConventionPlugin"
         }
-        register("compose") {
-            id = "cogito.compose"
-            implementationClass = "ComposeConventionPlugin"
+        register("androidApplicationCompose") {
+            id = "cogito.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
         register("supabase") {
             id = "cogito.supabase"
@@ -99,6 +99,14 @@ gradlePlugin {
         register("androidRoom"){
             id = "cogito.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
+        }
+        register("androidFeature"){
+            id = "cogito.android.feature"
+            implementationClass = "AndroidFeatureConventionPlugin"
+        }
+        register("androidFeatureWear"){
+            id = "cogito.android.feature.wear"
+            implementationClass = "AndroidFeatureWearConventionPlugin"
         }
     }
 }

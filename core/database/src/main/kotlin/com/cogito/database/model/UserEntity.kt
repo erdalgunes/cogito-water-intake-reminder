@@ -9,12 +9,8 @@ import java.util.UUID
     tableName = "user_info"
 )
 data class UserEntity(
-    val id: String = UUID.randomUUID().toString(),
-    @ColumnInfo("user_name")
-    val name: String,
     @PrimaryKey
-    @ColumnInfo("user_email")
-    val email: String,
-    @ColumnInfo("user_goal")
-    val goal: Int,
+    val id: String,
+    @ColumnInfo(name = "goal_ml")
+    val goalMilliliters: Int = 2500
 )

@@ -1,15 +1,20 @@
 package com.cogito.database.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Upsert
+import androidx.room.Update
 import com.cogito.database.model.UserEntity
 
 @Dao
 interface UserDao {
-    @Upsert
-    fun upsertUser(user: UserEntity)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun insertUser(user: UserEntity)
 
-    @Query("SELECT id FROM user_info WHERE user_email = :email")
-    fun getUserId(email: String): String
+    @Update
+    suspend fun updateUser(user: UserEntity)
+
+    @Query("SELECT goal_ml FROM user_info")
+    suspend fun getUserGoalInMilliliters(): Int
 }

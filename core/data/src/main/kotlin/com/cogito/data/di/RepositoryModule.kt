@@ -1,7 +1,7 @@
-import com.cogito.data.repository.HydrationRepository
-import com.cogito.data.repository.HydrationRepositoryImpl
-import com.cogito.data.repository.UserRepository
-import com.cogito.data.repository.UserRepositoryImpl
+import com.cogito.data.repository.hydration.HydrationRepository
+import com.cogito.data.repository.hydration.HydrationRepositoryImpl
+import com.cogito.data.repository.user.UserRepository
+import com.cogito.data.repository.user.UserRepositoryImpl
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module

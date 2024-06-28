@@ -12,10 +12,10 @@ import java.util.UUID
 data class HydrationEntity(
     @PrimaryKey
     val id: String = UUID.randomUUID().toString(),
-    @ColumnInfo("user_id")
-    val userId: String,
     @ColumnInfo("amount_ml")
     val amount: Int,
-    @ColumnInfo("intake_timestamp")
-    val timestamp: Instant,
+    @ColumnInfo("created_at")
+    val createdAt: Instant,
+    @ColumnInfo("is_synced")
+    val isSynced: Boolean = false,
 )

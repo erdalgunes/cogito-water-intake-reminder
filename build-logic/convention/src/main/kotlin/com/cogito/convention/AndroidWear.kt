@@ -15,8 +15,6 @@ internal fun Project.configureAndroidWear(
         dependencies {
             add("implementation", libs.findLibrary("tiles").get())
             add("implementation", libs.findLibrary("tiles.material").get())
-            add("implementation", libs.findLibrary("wear").get())
-            add("implementation", libs.findLibrary("wear.tooling.preview").get())
             add("implementation", libs.findLibrary("play.services.wearable").get())
             add("implementation", libs.findLibrary("horologist.tiles").get())
         }

@@ -9,10 +9,19 @@
       <module name="hydration-tracker.core.common" target="17" />
       <module name="hydration-tracker.core.data" target="17" />
       <module name="hydration-tracker.core.database" target="17" />
+      <module name="hydration-tracker.core.designsystem.android" target="17" />
       <module name="hydration-tracker.core.designsystem.app" target="17" />
+      <module name="hydration-tracker.core.designsystem.common" target="17" />
+      <module name="hydration-tracker.core.designsystem.glance" target="17" />
+      <module name="hydration-tracker.core.designsystem.wear" target="17" />
       <module name="hydration-tracker.core.domain" target="17" />
       <module name="hydration-tracker.core.model" target="17" />
+      <module name="hydration-tracker.core.network" target="17" />
+      <module name="hydration-tracker.core.ui" target="17" />
+      <module name="hydration-tracker.feature.hydration.summary" target="17" />
+      <module name="hydration-tracker.feature.hydration.wear.summary" target="17" />
       <module name="hydration-tracker.feature.tile.hydration" target="17" />
+      <module name="hydration-tracker.wear-app" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

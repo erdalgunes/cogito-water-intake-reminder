@@ -9,4 +9,5 @@ android {
 
 dependencies {
     api(libs.kotlinx.datetime)
+    api(libs.androidx.annotation)
 }
