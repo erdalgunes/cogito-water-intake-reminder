@@ -1,22 +1,21 @@
 package com.cogito.hydration.presentation.summary
 
+import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.compose.LocalLifecycleOwner
-import androidx.lifecycle.lifecycleScope
 import com.cogito.core.network.CogitoDispatchers
-import com.cogito.hydration.data.model.DailyHydrationIntake
-import com.cogito.hydration.data.repository.HydrationRepository
+import com.cogito.data.repository.HydrationRepository
+import com.cogito.data.repository.UserRepository
 import com.cogito.hydration.presentation.summary.state.SummaryEvent
 import com.cogito.hydration.presentation.summary.state.SummaryState
+import com.cogito.model.data.UserDataModel
+import com.cogito.model.ui.HydrationSummary
 import com.slack.circuit.runtime.presenter.Presenter
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.launchIn
@@ -26,59 +25,48 @@ import org.koin.compose.koinInject
 import org.koin.core.qualifier.named
 
 class SummaryPresenter(
-    private val waterIntakeRepository: HydrationRepository,
+    private val hydrationRepository: HydrationRepository,
+    private val userRepository: UserRepository,
 ) : Presenter<SummaryState> {
     @Composable
     override fun present(): SummaryState {
         val ioDispatcher: CoroutineDispatcher = koinInject(named<CogitoDispatchers.IO>())
-        val lifecycleOwner = LocalLifecycleOwner.current
         val coroutineScope = rememberCoroutineScope()
-        var waterIntake by remember { mutableStateOf<DailyHydrationIntake?>(null) }
+        var hydrationSummary by remember { mutableStateOf<HydrationSummary?>(null) }
         var isLoading by remember { mutableStateOf(true) }
         var loadingAmount by remember { mutableIntStateOf(500) }
         var isError by remember { mutableStateOf(false) }
+        var userId by remember { mutableStateOf("") }
 
-        DisposableEffect(Unit) {
-            val observer = LifecycleEventObserver { _, event ->
-                when (event) {
-                    Lifecycle.Event.ON_START -> {
-                        coroutineScope.launch(ioDispatcher) {
-                            try {
-                                waterIntakeRepository.getHydrationIntakeForTheDay(1)
-                                    .onEach {
-                                        isLoading = false
-                                        waterIntake = it
-                                    }.launchIn(lifecycleOwner.lifecycleScope)
-                                waterIntakeRepository.subscribeToRealtimeChannel()
-                            } catch (e: Exception) {
-                                isError = true
-                            }
-                        }
-                    }
-
-                    Lifecycle.Event.ON_STOP -> {
-                        coroutineScope.launch(ioDispatcher) {
-                            try {
-                                waterIntakeRepository.unsubscribeRealtimeChannel()
-                            } catch (e: Exception) {
-                                isError = true
-                            }
-                        }
-                    }
-
-                    else -> Unit
+        LaunchedEffect(Unit) {
+            val userDataModel = UserDataModel(
+                name = "Erdal",
+                email = "erdalgns@gmail.com",
+                goal = 2500,
+            )
+            coroutineScope.launch(ioDispatcher) {
+                try {
+                    userId = userRepository.getUserId(userDataModel.email)
+                    Log.d("SummaryPresenter", "present: $userId")
+                    hydrationRepository.getHydrationSummaryToday(userId).onEach { summary ->
+                        Log.d("SummaryPresenter", "present: $summary")
+                        isLoading = true
+                        hydrationSummary = HydrationSummary(
+                            summary,
+                            2500,
+                        )
+                        isLoading = false
+                    }.launchIn(this)
+                } catch (e: Exception) {
+                    isError = true
                 }
-            }
-            lifecycleOwner.lifecycle.addObserver(observer)
-            onDispose {
-                lifecycleOwner.lifecycle.removeObserver(observer)
             }
         }
 
         return SummaryState(
             isError = isError,
-            hydrationGoal = waterIntake?.userGoal,
-            hydrationToday = waterIntake?.totalIntake,
+            hydrationGoal = hydrationSummary?.hydrationGoal,
+            hydrationToday = hydrationSummary?.hydrationToday,
             isLoading = isLoading,
             loadingAmount = loadingAmount
         ) { event ->
@@ -87,7 +75,10 @@ class SummaryPresenter(
                     isLoading = true
                     loadingAmount = event.hydration.amount
                     coroutineScope.launch(ioDispatcher) {
-                        waterIntakeRepository.addHydrationIntake(event.hydration)
+                        hydrationRepository.addHydrationIntake(
+                            userId = userId,
+                            event.hydration
+                        )
                     }
                 }
             }

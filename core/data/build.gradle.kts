@@ -1,14 +1,17 @@
-plugins {
-    alias(libs.plugins.nowinandroid.android.library)
-    alias(libs.plugins.nowinandroid.android.library.jacoco)
+plugins{
+    alias(libs.plugins.cogito.android.library)
+    alias(libs.plugins.cogito.android.library.jacoco)
+    alias(libs.plugins.cogito.koin)
 }
 
 android {
-    namespace = "cogito.core.data"
-    testOptions {
-        unitTests {
-            isIncludeAndroidResources = true
-            isReturnDefaultValues = true
-        }
-    }
+    namespace = "com.cogito.data"
+}
+
+dependencies{
+    api(projects.core.common)
+    api(projects.core.database)
+    api(projects.core.model)
+
+    implementation(libs.koin.android.compat)
 }

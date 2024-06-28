@@ -22,6 +22,8 @@ include(":core:designsystem:app")
 include(":core:common")
 include(":core:domain")
 include(":core:model")
+include(":core:database")
+include(":core:data")
 
 
 include(":lint")

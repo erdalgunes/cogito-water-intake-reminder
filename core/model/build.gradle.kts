@@ -6,3 +6,7 @@ plugins{
 android {
     namespace = "com.cogito.model"
 }
+
+dependencies {
+    api(libs.kotlinx.datetime)
+}
