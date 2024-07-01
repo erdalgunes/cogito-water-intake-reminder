@@ -21,6 +21,8 @@ dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.android.tools.common)
     compileOnly(libs.compose.gradlePlugin)
+    compileOnly(libs.firebase.crashlytics.gradlePlugin)
+    compileOnly(libs.firebase.performance.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.room.gradlePlugin)
@@ -92,21 +94,25 @@ gradlePlugin {
             id = "cogito.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
         }
-        register("androidLibraryGlance"){
+        register("androidLibraryGlance") {
             id = "cogito.android.library.glance"
             implementationClass = "AndroidLibraryGlanceConventionPlugin"
         }
-        register("androidRoom"){
+        register("androidRoom") {
             id = "cogito.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
         }
-        register("androidFeature"){
+        register("androidFeature") {
             id = "cogito.android.feature"
             implementationClass = "AndroidFeatureConventionPlugin"
         }
-        register("androidFeatureWear"){
+        register("androidFeatureWear") {
             id = "cogito.android.feature.wear"
             implementationClass = "AndroidFeatureWearConventionPlugin"
+        }
+        register("androidApplicationFirebaseConventionPlugin") {
+            id = "cogito.android.application.firebase"
+            implementationClass = "AndroidApplicationFirebaseConventionPlugin"
         }
     }
 }

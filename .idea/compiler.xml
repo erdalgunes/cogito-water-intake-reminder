@@ -6,6 +6,7 @@
       <module name="build-logic.convention.main" target="17" />
       <module name="build-logic.convention.test" target="17" />
       <module name="hydration-tracker.app" target="17" />
+      <module name="hydration-tracker.core.analytics" target="17" />
       <module name="hydration-tracker.core.common" target="17" />
       <module name="hydration-tracker.core.data" target="17" />
       <module name="hydration-tracker.core.database" target="17" />

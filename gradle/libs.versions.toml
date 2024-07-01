@@ -28,15 +28,19 @@ circuit = "0.22.0"
 composeBom = "2024.06.00"
 composeCompilerGradlePlugin = "2.0.0"
 coreSplashscreen = "1.2.0-alpha01"
+firebaseBom = "33.1.1"
 firebaseCrashlyticsPlugin = "3.0.2"
 firebasePerfPlugin = "1.4.2"
+gmsPlugin = "4.4.2"
 horologistComposeTools = "0.4.8"
 horologistTiles = "0.4.8"
 jacoco = "0.8.7"
+kermit = "2.0.4"
 koinBom = "3.6.0-Beta4"
 koinKspVersion = "1.3.1"
 kotlin = "2.0.0"
 kotlinxCoroutines = "1.8.1"
+kotlinxDatetime = "0.6.0"
 kspPlugin = "2.0.0-1.0.22"
 ktor = "2.3.11"
 playServicesWearable = "18.2.0"
@@ -47,11 +51,11 @@ truth = "1.4.2"
 turbine = "1.1.0"
 wear = "1.3.0"
 wearCompose = "1.3.1"
-kotlinxDatetime = "0.6.0"
 
 [libraries]
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "androidXAnnotation" }
 androidx-compose-animation = { group = "androidx.compose.animation", name = "animation" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidxComposeAlpha" }
@@ -71,11 +75,12 @@ androidx-glance = { group = "androidx.glance", name = "glance", version.ref = "a
 androidx-glance-preview = { group = "androidx.glance", name = "glance-preview", version.ref = "androidXGlance" }
 androidx-glance-wear-tiles = { group = "androidx.glance", name = "glance-wear-tiles", version.ref = "androidXGlanceWearTiles" }
 androidx-tracing-ktx = { group = "androidx.tracing", name = "tracing-ktx", version.ref = "androidxTracing" }
+androidx-wear = { group = "androidx.wear", name = "wear", version.ref = "wear" }
 androidx-wear-compose-foundation = { group = "androidx.wear.compose", name = "compose-foundation", version.ref = "wearCompose" }
 androidx-wear-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "wearCompose" }
 androidx-wear-compose-navigation = { group = "androidx.wear.compose", name = "compose-navigation", version.ref = "wearCompose" }
 androidx-wear-compose-ui-tooling = { group = "androidx.wear.compose", name = "compose-ui-tooling" }
-androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "androidXAnnotation" }
+androidx-wear-tooling-preview = { group = "androidx.wear", name = "wear-tooling-preview", version = "1.0.0" }
 annotation-experimental = { group = "androidx.annotation", name = "annotation-experimental", version.ref = "androidXAnnotationExperimental" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidXAppCompat" }
 circuit = { group = "com.slack.circuit", name = "circuit-foundation", version.ref = "circuit" }
@@ -87,8 +92,15 @@ core = { group = "androidx.core", name = "core", version.ref = "androidXCore" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidXCore" }
 core-performance = { group = "androidx.core", name = "core-performance", version.ref = "androidXCore" }
 datastore-core = { group = "androidx.datastore", name = "datastore-core", version.ref = "androidXDatastore" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-cloud-messaging = { group = "com.google.firebase", name = "firebase-messaging-ktx" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
+firebase-performance = { group = "com.google.firebase", name = "firebase-perf-ktx" }
 horologist-compose-tools = { group = "com.google.android.horologist", name = "horologist-compose-tools", version.ref = "horologistComposeTools" }
 horologist-tiles = { group = "com.google.android.horologist", name = "horologist-tiles", version.ref = "horologistTiles" }
+kermit = { group = "co.touchlab", name="kermit", version.ref="kermit"}
+kermit-crashlytics = { group = "co.touchlab", name="kermit-crashlytics", version.ref="kermit"}
 koin-android = { group = "io.insert-koin", name = "koin-android" }
 koin-android-compat = { group = "io.insert-koin", name = "koin-android-compat" }
 koin-android-test = { group = "io.insert-koin", name = "koin-android-test" }
@@ -147,13 +159,11 @@ turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-wear = { group = "androidx.wear", name = "wear", version.ref = "wear" }
 wear-input = { group = "androidx.wear", name = "wear-input", version.ref = "androidXWearInput" }
 wear-input-testing = { group = "androidx.wear", name = "wear-input-testing", version.ref = "androidXWearInput" }
 wear-ongoing = { group = "androidx.wear", name = "wear-ongoing", version.ref = "androidXWearOngoing" }
 wear-phone-interactions = { group = "androidx.wear", name = "wear-phone-interactions", version.ref = "androidXWearPhoneInteractions" }
 wear-remote-interactions = { group = "androidx.wear", name = "wear-remote-interactions", version.ref = "androidXWearRemoteInteractions" }
-androidx-wear-tooling-preview = { group = "androidx.wear", name = "wear-tooling-preview", version = "1.0.0" }
 wear-watchface = { group = "androidx.wear.watchface", name = "watchface", version.ref = "androidXWearWatchFace" }
 wear-watchface-complications-data-source = { group = "androidx.wear.watchface", name = "watchface-complications-data-source", version.ref = "androidXWearWatchFace" }
 wear-watchface-complications-data-source-ktx = { group = "androidx.wear.watchface", name = "watchface-complications-data-source-ktx", version.ref = "androidXWearWatchFace" }
@@ -179,6 +189,9 @@ android-application = { id = "com.android.application", version.ref = "androidGr
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }
+firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "firebasePerfPlugin" }
+gms = { id = "com.google.gms.google-services", version.ref = "gmsPlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
@@ -189,6 +202,7 @@ room = { id = "androidx.room", version.ref = "room" }
 # Plugins defined in the included build-logic
 cogito-android-application = { id = "cogito.android.application", version = "unspecified" }
 cogito-android-application-compose = { id = "cogito.android.application.compose", version = "unspecified" }
+cogito-android-application-firebase = { id = "cogito.android.application.firebase", version = "unspecified" }
 cogito-android-application-flavors = { id = "cogito.android.application.flavors", version = "unspecified" }
 cogito-android-application-jacoco = { id = "cogito.android.application.jacoco", version = "unspecified" }
 cogito-android-feature = { id = "cogito.android.feature", version = "unspecified" }

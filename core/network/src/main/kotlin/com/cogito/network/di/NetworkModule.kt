@@ -10,6 +10,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
+import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
 val networkModule = module {
@@ -18,7 +19,12 @@ val networkModule = module {
             .add(KotlinJsonAdapterFactory())
             .build()
     }
-    singleOf(::UserNetworkDataSourceImpl) { bind<UserNetworkDataSource>() }
+    single<UserNetworkDataSource> {
+        UserNetworkDataSourceImpl(
+            supabaseProvider = get(),
+            log = get(parameters = { parametersOf("UserNetworkDataSourceImpl") })
+        )
+    }
     singleOf(::HydrationNetworkDataSourceImpl) { bind<HydrationNetworkDataSource>() }
     singleOf(::SupabaseProviderImpl) { bind<SupabaseProvider>() }
 }

@@ -1,5 +1,3 @@
-import java.io.FileInputStream
-import java.util.Properties
 import com.cogito.convention.CogitoBuildType
 
 plugins {
@@ -7,6 +5,7 @@ plugins {
     alias(libs.plugins.cogito.android.application.flavors)
     alias(libs.plugins.cogito.android.application.jacoco)
     alias(libs.plugins.cogito.android.application.compose)
+    alias(libs.plugins.cogito.android.application.firebase)
     alias(libs.plugins.cogito.koin)
     alias(libs.plugins.cogito.circuit)
     alias(libs.plugins.roborazzi)
@@ -61,6 +60,7 @@ dependencies {
     implementation(projects.core.common)
     implementation(projects.core.data)
     implementation(projects.core.database)
+    implementation(projects.core.analytics)
     implementation(projects.core.designsystem.android)
     implementation(projects.core.designsystem.wear)
     implementation(projects.core.designsystem.common)

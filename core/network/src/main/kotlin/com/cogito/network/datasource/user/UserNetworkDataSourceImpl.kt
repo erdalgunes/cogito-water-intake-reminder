@@ -1,6 +1,6 @@
 package com.cogito.network.datasource.user
 
-import android.util.Log
+import co.touchlab.kermit.Logger
 import com.cogito.network.model.UserGoalNetworkModel
 import com.cogito.network.supabase.SupabaseProvider
 import io.github.jan.supabase.gotrue.SessionStatus
@@ -11,14 +11,15 @@ import kotlinx.coroutines.flow.Flow
 
 internal class UserNetworkDataSourceImpl(
     private val supabaseProvider: SupabaseProvider,
+    private val log: Logger,
 ) : UserNetworkDataSource {
     override suspend fun authenticateUser() {
-        Log.d("UserNetworkDataSourceImpl", "authenticateUser: Signing in...")
+        log.d("authenticateUser: Signing in...")
         supabaseProvider.client.auth.signInWith(Email) {
             email = "erdalgns@gmail.com"
             password = "350416"
         }
-        Log.d("UserNetworkDataSourceImpl", "authenticateUser: Signed in!")
+        log.d("authenticateUser: Signed in!")
     }
 
     override fun observeUserAuth(): Flow<SessionStatus> {
@@ -26,14 +27,14 @@ internal class UserNetworkDataSourceImpl(
     }
 
     override suspend fun getAuthenticatedUserId(): String {
-        Log.d("UserNetworkDataSourceImpl", "getAuthenticatedUserId: Retrieving user info...")
+        log.d("getAuthenticatedUserId: Retrieving user info...")
         val userInfo =
             supabaseProvider.client.auth.retrieveUserForCurrentSession(updateSession = true)
-        Log.d("UserNetworkDataSourceImpl", "getAuthenticatedUserId: $userInfo")
+        log.d("getAuthenticatedUserId: $userInfo")
         return userInfo.id
     }
 
     override suspend fun syncUserHydrationGoal(userId: String, goal: Int) {
-        supabaseProvider.client.from("user_goals").insert(UserGoalNetworkModel(userId, goal))
+        supabaseProvider.client.from("user_goals").upsert(UserGoalNetworkModel(userId, goal))
     }
 }

@@ -1,6 +1,5 @@
 package com.cogito.hydration.summary.presentation
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -9,7 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import com.cogito.core.network.CogitoDispatchers
+import com.cogito.core.concurrency.CogitoDispatchers
 import com.cogito.data.repository.hydration.HydrationRepository
 import com.cogito.data.repository.user.UserRepository
 import com.cogito.hydration.summary.presentation.state.SummaryEvent
@@ -26,7 +25,9 @@ import kotlinx.coroutines.future.await
 import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
+import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.named
+import co.touchlab.kermit.Logger
 
 class SummaryPresenter(
     private val hydrationRepository: HydrationRepository,
@@ -34,6 +35,7 @@ class SummaryPresenter(
 ) : Presenter<SummaryState> {
     @Composable
     override fun present(): SummaryState {
+        val log: Logger = koinInject<Logger>(parameters = { parametersOf("SummaryPresenter") })
         val ioDispatcher: CoroutineDispatcher = koinInject(named<CogitoDispatchers.IO>())
         val coroutineScope = rememberCoroutineScope()
         var hydrationSummary by remember { mutableStateOf<HydrationSummary?>(null) }
@@ -49,21 +51,21 @@ class SummaryPresenter(
                         userRepository.authenticateUser()
                     }.await()
                 } catch (e: Exception) {
-                    Log.e("SummaryPresenter", "present: ", e)
+                    log.e( "present: ", e)
                 }
                 try {
-                    Log.d("SummaryPresenter", "present: Getting hydration goal")
+                    log.d( "present: Getting hydration goal")
                     val userHydrationGoal = userRepository.getUserHydrationGoal()
-                    Log.d("SummaryPresenter", "present: Got hydration goal: $userHydrationGoal")
+                    log.d( "present: Got hydration goal: $userHydrationGoal")
                     try {
-                        Log.d("SummaryPresenter", "present: Syncing hydration goal")
+                        log.d( "present: Syncing hydration goal")
                         userRepository.syncUserHydrationGoal(userId, userHydrationGoal)
                     } catch (e: Exception) {
-                        Log.e("SummaryPresenter", "present: Error syncing hydration goal", e)
+                        log.e( "present: Error syncing hydration goal", e)
                     }
-                    Log.d("SummaryPresenter", "present: Getting hydration summary")
+                    log.d( "present: Getting hydration summary")
                     hydrationRepository.getHydrationSummaryToday().onEach { summary ->
-                        Log.d("SummaryPresenter", "present: Got hydration summary: $summary")
+                        log.d( "present: Got hydration summary: $summary")
                         isLoading = true
                         hydrationSummary = HydrationSummary(
                             summary,
@@ -72,7 +74,7 @@ class SummaryPresenter(
                         isLoading = false
                     }.launchIn(this)
                 } catch (e: Exception) {
-                    Log.e("SummaryPresenter", "present: ", e)
+                    log.e( "present: ", e)
                     isError = true
                 }
             }
@@ -100,11 +102,11 @@ class SummaryPresenter(
                                 is RestException,
                                 is HttpRequestTimeoutException,
                                 is HttpRequestException -> {
-                                    Log.e("SummaryPresenter", "present: Couldn't sync data", e)
+                                    log.e( "present: Couldn't sync data", e)
                                 }
 
                                 else -> {
-                                    Log.e("SummaryPresenter", "present: ", e)
+                                    log.e( "present: ", e)
                                 }
                             }
                         }
