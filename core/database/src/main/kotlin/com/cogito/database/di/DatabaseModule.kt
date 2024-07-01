@@ -5,12 +5,14 @@ import androidx.room.Room
 import com.cogito.database.CogitoDatabase
 import org.koin.dsl.module
 
-val daoModule = module {
+fun daoModule() = listOf(daoModule, databaseModule)
+
+internal val daoModule = module {
     single { provideHydrationDao(get()) }
     single { provideUserDao(get()) }
 }
 
-val databaseModule = module {
+internal val databaseModule = module {
     single { provideDatabase(get()) }
 }
 

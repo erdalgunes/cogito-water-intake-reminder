@@ -17,4 +17,7 @@ interface UserDao {
 
     @Query("SELECT goal_ml FROM user_info")
     suspend fun getUserGoalInMilliliters(): Int
+
+    @Query("SELECT id FROM user_info")
+    suspend fun getUserId(): String
 }

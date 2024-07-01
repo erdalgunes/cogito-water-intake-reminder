@@ -1,6 +1,5 @@
 package com.cogito.data.repository.user
 
-import android.util.Log
 import co.touchlab.kermit.Logger
 import com.cogito.core.DoNothing
 import com.cogito.core.concurrency.CogitoDispatchers
@@ -83,4 +82,6 @@ internal class UserRepositoryImpl(
     override suspend fun syncUserHydrationGoal(userId: String, goal: Int) {
         dataSource.syncUserHydrationGoal(userId, goal)
     }
+
+    override suspend fun getUserId() = dao.getUserId()
 }

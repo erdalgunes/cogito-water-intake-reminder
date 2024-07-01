@@ -9,10 +9,10 @@ android {
 }
 
 dependencies{
-    api(projects.core.common)
-    api(projects.core.database)
-    api(projects.core.model)
     api(projects.core.network)
+    implementation(projects.core.database)
+    implementation(projects.core.common)
+    implementation(projects.core.model)
 
     implementation(libs.koin.android)
     implementation(libs.koin.android.compat)
