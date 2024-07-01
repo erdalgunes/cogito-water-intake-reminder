@@ -1,8 +1,9 @@
 package com.cogito.data.repository.user
 
 import android.util.Log
+import co.touchlab.kermit.Logger
 import com.cogito.core.DoNothing
-import com.cogito.core.network.CogitoDispatchers
+import com.cogito.core.concurrency.CogitoDispatchers
 import com.cogito.database.dao.UserDao
 import com.cogito.database.model.UserEntity
 import com.cogito.network.datasource.user.UserNetworkDataSource
@@ -22,62 +23,43 @@ import kotlin.coroutines.suspendCoroutine
 internal class UserRepositoryImpl(
     private val dao: UserDao,
     private val dataSource: UserNetworkDataSource,
+    private val log: Logger,
 ) : UserRepository {
     private val coroutineScope: CoroutineScope = getKoin().get(named<CogitoDispatchers.IO>())
     override suspend fun authenticateUser(): String = suspendCoroutine { continuation ->
         coroutineScope.launch {
             try {
-                Log.d("UserRepositoryImpl", "authenticateUser(): Checking session...")
+                log.d("authenticateUser(): Checking session...")
                 val userId = dataSource.getAuthenticatedUserId()
-                Log.d("UserRepositoryImpl", "authenticateUser(): Session found. User ID: $userId")
+                log.d("authenticateUser(): Session found. User ID: $userId")
                 continuation.resume(userId)
             } catch (e: Exception) {
                 when (e) {
                     is RestException,
                     is IllegalStateException -> {
-                        Log.e("UserRepositoryImpl", "authenticateUser(): No session found: ", e)
-                        Log.d("UserRepositoryImpl", "authenticateUser(): Authenticating user...")
+                        log.e("authenticateUser(): No session found: ", e)
+                        log.d("authenticateUser(): Authenticating user...")
                         dataSource.observeUserAuth()
                             .onEach { sessionResult ->
                                 when (sessionResult) {
                                     is SessionStatus.Authenticated -> {
-                                        Log.d(
-                                            "UserRepositoryImpl",
-                                            "authenticateUser(): User authenticated"
-                                        )
+                                        log.d("authenticateUser(): User authenticated")
                                         val userId = sessionResult.session.user?.id
-                                        Log.d(
-                                            "UserRepositoryImpl",
-                                            "authenticateUser(): User ID: $userId"
-                                        )
+                                        log.d("authenticateUser(): User ID: $userId")
                                         if (userId != null) {
-                                            Log.d(
-                                                "UserRepositoryImpl",
-                                                "authenticateUser(): Saving user..."
-                                            )
+                                            log.d("authenticateUser(): Saving user...")
                                             dao.insertUser(UserEntity(userId))
-                                            Log.d(
-                                                "UserRepositoryImpl",
-                                                "authenticateUser(): User saved"
-                                            )
+                                            log.d("authenticateUser(): User saved")
                                             continuation.resume(userId)
                                         }
                                     }
 
                                     is SessionStatus.NotAuthenticated -> {
-                                        Log.d(
-                                            "UserRepositoryImpl",
-                                            "authenticateUser(): User not authenticated"
-                                        )
-                                        Log.d(
-                                            "UserRepositoryImpl",
-                                            "authenticateUser(): Authenticating user..."
+                                        log.d("authenticateUser(): User not authenticated")
+                                        log.d("authenticateUser(): Authenticating user..."
                                         )
                                         dataSource.authenticateUser()
-                                        Log.d(
-                                            "UserRepositoryImpl",
-                                            "authenticateUser(): User authenticated"
-                                        )
+                                        log.d("authenticateUser(): User authenticated")
                                     }
 
                                     SessionStatus.NetworkError -> {

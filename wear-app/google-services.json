@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "976723293330",
+    "project_id": "tracker-99212",
+    "storage_bucket": "tracker-99212.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:976723293330:android:960e9a59857a21b083a24b",
+        "android_client_info": {
+          "package_name": "com.cogito.apps.tracker.wear.hydration"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7njzTW4N6oBOxvw3xVKeoP4YReJk-AMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:976723293330:android:cbcfe57d07a53af383a24b",
+        "android_client_info": {
+          "package_name": "com.cogito.apps.tracker.wear.hydration.demo.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7njzTW4N6oBOxvw3xVKeoP4YReJk-AMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

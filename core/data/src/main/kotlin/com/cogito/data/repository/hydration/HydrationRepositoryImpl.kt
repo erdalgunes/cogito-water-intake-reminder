@@ -1,6 +1,6 @@
 package com.cogito.data.repository.hydration
 
-import android.util.Log
+import co.touchlab.kermit.Logger
 import com.cogito.data.model.asEntity
 import com.cogito.data.model.asNetworkModel
 import com.cogito.database.dao.HydrationDao
@@ -15,10 +15,11 @@ import kotlin.time.Duration
 
 internal class HydrationRepositoryImpl(
     private val dao: HydrationDao,
-    private val hydrationDataSource: HydrationNetworkDataSource
+    private val hydrationDataSource: HydrationNetworkDataSource,
+    private val log: Logger,
 ) : HydrationRepository {
     override fun getHydrationSummaryToday(): Flow<Int> {
-        Log.d("HydrationRepositoryImpl", "getHydrationSummaryToday: ")
+        log.d("getHydrationSummaryToday: ")
         val now = Clock.System.now()
         val todayStart = now.toLocalDateTime(TimeZone.currentSystemDefault()).date.atStartOfDayIn(
             TimeZone.currentSystemDefault()
@@ -31,22 +32,22 @@ internal class HydrationRepositoryImpl(
     }
 
     override suspend fun addHydration(hydration: HydrationDataModel, userId: String) {
-        Log.d("HydrationRepositoryImpl", "addHydration: Saving to database")
+        log.d("addHydration: Saving to database")
         dao.insertHydration(hydration.asEntity())
-        Log.d("HydrationRepositoryImpl", "addHydration: Saving to network")
+        log.d("addHydration: Saving to network")
         hydrationDataSource.addHydration(hydration.asNetworkModel(userId))
-        Log.d("HydrationRepositoryImpl", "addHydration: Updating sync state")
+        log.d("addHydration: Updating sync state")
         dao.updateHydration(hydration.asEntity().copy(isSynced = true))
     }
 
     override suspend fun syncHydration(userId: String) {
-        Log.d("HydrationRepositoryImpl", "syncHydration: Getting hydration list for syncing")
+        log.d("syncHydration: Getting hydration list for syncing")
         val hydrationListForSyncing = dao.getHydrationListForSyncing()
-        Log.d("HydrationRepositoryImpl", "syncHydration: Syncing hydration list")
+        log.d("syncHydration: Syncing hydration list")
         hydrationListForSyncing.forEach { hydration ->
-            Log.d("HydrationRepositoryImpl", "syncHydration: Syncing hydration ${hydration.id}")
+            log.d("syncHydration: Syncing hydration ${hydration.id}")
             hydrationDataSource.addHydration(hydration.asNetworkModel(userId))
-            Log.d("HydrationRepositoryImpl", "syncHydration: Updating sync state")
+            log.d("syncHydration: Updating sync state")
             dao.updateHydration(hydration.copy(isSynced = true))
         }
     }

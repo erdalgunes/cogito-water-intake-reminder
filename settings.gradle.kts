@@ -19,6 +19,7 @@ rootProject.name = "hydration-tracker"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":wear-app")
 
+include(":core:analytics")
 include(":core:designsystem:android")
 include(":core:designsystem:common")
 include(":core:designsystem:glance")

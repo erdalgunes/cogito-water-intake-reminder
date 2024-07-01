@@ -9,7 +9,7 @@ import com.cogito.database.model.UserEntity
 
 @Dao
 interface UserDao {
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertUser(user: UserEntity)
 
     @Update
